@@ -2,7 +2,6 @@
 
 A FileSystem Abstraction System for Go
 
-[![Build Status](https://travis-ci.org/spf13/afero.svg)](https://travis-ci.org/spf13/afero) [![Build status](https://ci.appveyor.com/api/projects/status/github/spf13/afero?branch=master&svg=true)](https://ci.appveyor.com/project/spf13/afero) [![GoDoc](https://godoc.org/github.com/spf13/afero?status.svg)](https://godoc.org/github.com/spf13/afero) [![Join the chat at https://gitter.im/spf13/afero](https://badges.gitter.im/Dev%20Chat.svg)](https://gitter.im/spf13/afero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Overview
 
@@ -26,12 +25,12 @@ filesystem for full interoperability.
 
 ## Afero Features
 
-* A single consistent API for accessing a variety of filesystems
-* Interoperation between a variety of file system types
+* 用于访问各种文件系统的单一一致的API
+* 各种文件系统类型之间的互操作
 * A set of interfaces to encourage and enforce interoperability between backends
-* An atomic cross platform memory backed file system
-* Support for compositional (union) file systems by combining multiple file systems acting as one
-* Specialized backends which modify existing filesystems (Read Only, Regexp filtered)
+* 原子跨平台内存支持的文件系统
+* 通过将多个文件系统组合为一个文件系统来支持组合(联合)文件系统
+* 修改现有文件系统的专用后端 (只读, 正则过滤)
 * A set of utility functions ported from io, ioutil & hugo to be afero aware
 
 
@@ -41,12 +40,12 @@ Afero is easy to use and easier to adopt.
 
 A few different ways you could use Afero:
 
-* Use the interfaces alone to define your own file system.
-* Wrapper for the OS packages.
-* Define different filesystems for different parts of your application.
-* Use Afero for mock filesystems while testing
+* 单独使用接口定义自己的文件系统
+* 封装OS包
+* 为你应用的不同部分定于不同的文件系统
+* 测试时使用Afero mock文件系统
 
-## Step 1: Install Afero
+## Step 1: 安装 Afero
 
 First use go get to install the latest version of the library.
 
@@ -57,7 +56,7 @@ Next include Afero in your application.
 import "github.com/spf13/afero"
 ```
 
-## Step 2: Declare a backend
+## Step 2: 声明一个后端
 
 First define a package variable and set it to a pointer to a filesystem.
 ```go
@@ -72,7 +71,7 @@ will be using a completely new and isolated filesystem. In the case of
 OsFs it will still use the same underlying filesystem but will reduce
 the ability to drop in other filesystems as desired.
 
-## Step 3: Use it like you would the OS package
+## Step 3: 像OS package一样使用它
 
 Throughout your application use any function and method like you normally
 would.
@@ -89,9 +88,9 @@ AppFs.Open('/tmp/foo')
 `AppFs` being the variable we defined above.
 
 
-## List of all available functions
+## 所有可用函数
 
-File System Methods Available:
+文件系统可用方法:
 ```go
 Chmod(name string, mode os.FileMode) : error
 Chtimes(name string, atime time.Time, mtime time.Time) : error
@@ -106,7 +105,7 @@ RemoveAll(path string) : error
 Rename(oldname, newname string) : error
 Stat(name string) : os.FileInfo, error
 ```
-File Interfaces and Methods Available:
+可用文件接口和方法:
 ```go
 io.Closer
 io.Reader
@@ -126,7 +125,7 @@ WriteString(s string) : ret int, err error
 In some applications it may make sense to define a new package that
 simply exports the file system variable for easy access from anywhere.
 
-## Using Afero's utility functions
+## 工具函数
 
 Afero provides a set of functions to make it easier to use the underlying file systems.
 These functions have been primarily ported from io & ioutil with some developed for Hugo.
@@ -214,9 +213,9 @@ func TestExist(t *testing.T) {
 }
 ```
 
-# Available Backends
+# 可用后端
 
-## Operating System Native
+## 操作系统原生文件系统
 
 ### OsFs
 
@@ -230,7 +229,7 @@ appfs := afero.NewOsFs()
 appfs.MkdirAll("src/a", 0755)
 ```
 
-## Memory Backed Storage
+## 内存后端存储
 
 ### MemMapFs
 
@@ -251,7 +250,7 @@ backed file implementation. This can be used in other memory backed file
 systems with ease. Plans are to add a radix tree memory stored file
 system using InMemoryFile.
 
-## Network Interfaces
+## 网络接口
 
 ### SftpFs
 
