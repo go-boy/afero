@@ -1,3 +1,11 @@
+/*
+ * @Description: 填写描述
+ * @Author: WangXinyong/TaceyWong
+ * @Date: 2020-09-10 16:14:22
+ * @LastEditors: WangXinyong/TaceyWong
+ * @LastEditTime: 2020-09-10 16:14:39
+ * @FilePath: /afero/lstater.go
+ */
 // Copyright © 2018 Steve Francia <spf@spf13.com>.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +25,7 @@ import (
 	"os"
 )
 
-// Lstater is an optional interface in Afero. It is only implemented by the
+// Lstater Afero可选接口. It is only implemented by the
 // filesystems saying so.
 // It will call Lstat if the filesystem iself is, or it delegates to, the os filesystem.
 // Else it will call Stat.
