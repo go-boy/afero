@@ -33,7 +33,7 @@ type Afero struct {
 	Fs
 }
 
-// File represents a file in the filesystem.
+// File 表示文件系统中的一个文件.
 type File interface {
 	io.Closer
 	io.Reader
@@ -51,50 +51,45 @@ type File interface {
 	WriteString(s string) (ret int, err error)
 }
 
-// Fs is the filesystem interface.
+// Fs 是一个文件系统接口.
 //
-// Any simulated or real filesystem should implement this interface.
+// 所有模拟或真实文件系统都应该实现此接口
 type Fs interface {
-	// Create creates a file in the filesystem, returning the file and an
-	// error, if any happens.
+
+	// Create 在文件系统创建一个文件，返回文件和error
 	Create(name string) (File, error)
 
-	// Mkdir creates a directory in the filesystem, return an error if any
-	// happens.
+	// Mkdir 在文件系统创建一个文件夹，返回error
 	Mkdir(name string, perm os.FileMode) error
 
-	// MkdirAll creates a directory path and all parents that does not exist
-	// yet.
+	// MkdirAll 创建一个目录地址，所有的父目录都尚不存在
 	MkdirAll(path string, perm os.FileMode) error
 
-	// Open opens a file, returning it or an error, if any happens.
+	// Open 打开一个文件
 	Open(name string) (File, error)
 
-	// OpenFile opens a file using the given flags and the given mode.
+	// OpenFile 以给定的flag和mode打开文件.
 	OpenFile(name string, flag int, perm os.FileMode) (File, error)
 
-	// Remove removes a file identified by name, returning an error, if any
-	// happens.
+	// Remove 根据文件名称删除一个文件
 	Remove(name string) error
 
-	// RemoveAll removes a directory path and any children it contains. It
-	// does not fail if the path does not exist (return nil).
+	// RemoveAll 删除一个目录以及其中包含的子目录，如果不存在不会发生错误.
 	RemoveAll(path string) error
 
-	// Rename renames a file.
+	// Rename 重命名一个文件
 	Rename(oldname, newname string) error
 
-	// Stat returns a FileInfo describing the named file, or an error, if any
-	// happens.
+	// Stat 返回给定文件的描述信息
 	Stat(name string) (os.FileInfo, error)
 
-	// The name of this FileSystem
+	// Name 文件系统的名称
 	Name() string
 
-	//Chmod changes the mode of the named file to mode.
+	//Chmod 更改一个文件的mod.
 	Chmod(name string, mode os.FileMode) error
 
-	//Chtimes changes the access and modification times of the named file
+	//Chtimes 更改给定文件的访问和修改时间
 	Chtimes(name string, atime time.Time, mtime time.Time) error
 }
 
